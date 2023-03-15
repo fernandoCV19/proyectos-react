@@ -1,8 +1,8 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useMemo } from 'react';
 import { getMovies } from '../services/getMovies';
 import debounce from 'just-debounce-it';
 
-export function useMovies() {
+export function useMovies({ sort }) {
   const [movies, setMovies] = useState('');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ export function useMovies() {
     []
   );
 
-  const handleChange =  (event) => {
+  const handleChange = (event) => {
     const newSearch = event.target.value;
     if (newSearch.startsWith(' ')) {
       setError('No puedes iniciar con un espacio en blanco');
@@ -47,5 +47,17 @@ export function useMovies() {
     setMovies(newMovies);
   };
 
-  return { movies, handleChange, buscarPeliculas, loading, error };
+  const orderedMovies = useMemo(() => {
+    return sort
+      ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
+      : movies;
+  }, [sort, movies]);
+
+  return {
+    movies: orderedMovies,
+    handleChange,
+    buscarPeliculas,
+    loading,
+    error,
+  };
 }
