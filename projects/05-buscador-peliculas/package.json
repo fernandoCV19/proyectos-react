@@ -1,5 +1,5 @@
 {
-  "name": "04-prueba-tecnica",
+  "name": "05-buscador-peliculas",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,8 +8,15 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "just-debounce-it": "3.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
-    "@playwright/test": "^1.31.2",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react-swc": "^3.0.0",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
     "eslint-config-standard": "^17.0.0",
@@ -18,10 +25,5 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
     "vite": "^4.1.0"
-  },
-  "dependencies": {
-    "@vitejs/plugin-react": "3.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
   }
 }
